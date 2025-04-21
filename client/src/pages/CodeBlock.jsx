@@ -15,8 +15,8 @@ const SERVER = import.meta.env.VITE_API_URL;
 let socket;
 
 const ROLES = Object.freeze({
-    MENTOR: 'mentor',
-    STUDENT: 'student'
+    MENTOR: 'Mentor',
+    STUDENT: 'Student'
 })
 
 export default function CodeBlock() {
@@ -32,7 +32,7 @@ export default function CodeBlock() {
 
     function getBlockData() {
         if (blockData) return;
-        
+
         console.log("getting from api with id ", id);
         return apiService.getCodeBlockById(id);
     }
@@ -42,9 +42,7 @@ export default function CodeBlock() {
         socket.emit(SOCKET_EVENTS.JOIN, { blockId: id });
         socket.on(SOCKET_EVENTS.ROLE, setRole);
         socket.on(SOCKET_EVENTS.STUDENT_COUNT, setStudents);
-        socket.on(SOCKET_EVENTS.REMOTE_CODE, incoming => {
-            setCode(incoming);
-        });
+        socket.on(SOCKET_EVENTS.REMOTE_CODE, setCode);
         socket.on(SOCKET_EVENTS.END_SESSION, () => nav('/'));
     }
 
