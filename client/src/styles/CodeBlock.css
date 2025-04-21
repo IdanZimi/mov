@@ -1,0 +1,43 @@
+.code-block-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.code-block-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.header-section .button-container {
+    display: flex;
+    gap: 8px;
+}
+
+
+.success-message {
+    text-align: center;
+    background: #f6ffed;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #b7eb8f;
+}
+
+.editor-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

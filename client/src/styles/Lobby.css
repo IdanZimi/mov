@@ -1,0 +1,44 @@
+.lobby-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+
+.blocks-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    max-width: 1200px;
+}
+
+.block-card-wrapper {
+    max-width: 300px;
+}
+
+.block-card {
+    height: 100%;
+    background: rgba(247, 249, 250, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.block-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.block-card-description {
+    color: #52779e;
+}
+
+.block-link {
+    text-decoration: none;
+} 

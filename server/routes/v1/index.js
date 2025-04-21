@@ -1,8 +1,8 @@
 import { Router } from "express";
-import userRouter from "../../modules/user/routes/user.routes.js";
+import codeBlockRouter from "../../modules/codeBlock/routes/codeBlock.routes.js";
 
 const v1Router = Router();
 
-v1Router.use('/user', userRouter)
+v1Router.use('/codeblock', codeBlockRouter)
 
 export default v1Router;
