@@ -1,11 +1,11 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef} from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import io from 'socket.io-client';
 import CodeEditor from '../components/CodeEditor';
 import { apiService } from "../services/apiService.js";
 import SOCKET_EVENTS from "../socket/events.js";
-import { Button, Typography, Space, Badge, Card, Tooltip } from 'antd';
-import { CrownOutlined, TeamOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Typography, Space, Badge, Card, Tooltip, notification } from 'antd';
+import { CrownOutlined, TeamOutlined, LogoutOutlined, UserOutlined, InfoCircleOutlined} from '@ant-design/icons';
 import useDebounce from '../hooks/debounce.js';
 import '../styles/CodeBlock.css';
 
@@ -29,6 +29,19 @@ export default function CodeBlock() {
     const [code, setCode] = useState('');
     const { state } = useLocation();
     const [blockData, setBlockData] = useState(state?.block || null);
+    const [api, contextHolder] = notification.useNotification();
+    const roleRef = useRef(null); 
+
+    const openNotification = () => {
+        api.info({
+            message: 'Session Ended',
+            description: 'The mentor has left the session. You will be redirected to the lobby.',
+            icon: <InfoCircleOutlined style={{ color: '#1890ff' }} />,
+            placement: 'top',
+            duration: 3,
+            onClose: () => nav('/'),
+        });
+    };
 
     function getBlockData() {
         if (blockData) return;
@@ -40,11 +53,19 @@ export default function CodeBlock() {
     function initSocket() {
         socket = io(SERVER);
         socket.emit(SOCKET_EVENTS.JOIN, { blockId: id });
-        socket.on(SOCKET_EVENTS.ROLE, setRole);
+        socket.on(SOCKET_EVENTS.ROLE, (role)=>{console.log('new role', role); roleRef.current = role; setRole(role)});
         socket.on(SOCKET_EVENTS.STUDENT_COUNT, setStudents);
         socket.on(SOCKET_EVENTS.REMOTE_CODE, setCode);
-        socket.on(SOCKET_EVENTS.END_SESSION, () => nav('/'));
+        socket.on(SOCKET_EVENTS.END_SESSION, endSession);
     }
+
+    const endSession = useCallback(() => {
+        if (roleRef.current === ROLES.STUDENT) {
+            openNotification();
+            return;
+        }
+        nav('/');
+    }, [role]);
 
     useEffect(() => {
         if (!blockData) {
@@ -88,15 +109,17 @@ export default function CodeBlock() {
 
 
     return (
+        <>
+        {contextHolder}
         <div className="code-block-container">
             <Card className="code-block-card">
                 <div className="header-section">
                     <Title level={2}>
                         <Tooltip title={role}>
-                            {role === ROLES.MENTOR ?
-                                <CrownOutlined style={{ color: '#faad14' }} /> :
-                                <UserOutlined style={{ color: '#1890ff' }} />
-                            }
+                            {role && (role === ROLES.MENTOR ?
+                                (<CrownOutlined style={{ color: '#faad14' }} />) :
+                                (<UserOutlined style={{ color: '#1890ff' }} />)
+                            )}
                         </Tooltip> {title}
                     </Title>
                     <Space>
@@ -122,5 +145,6 @@ export default function CodeBlock() {
                 </div>
             </Card>
         </div>
+        </>
     );
 }

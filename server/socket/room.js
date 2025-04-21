@@ -55,7 +55,7 @@ export default class Room {
 
     #broadcastCount() {
         const count = this.#students.size;
-        this.#io.in(this.#id).emit('student-count', count);
+        this.#io.in(this.#id).emit(SOCKET_EVENTS.STUDENT_COUNT, count);
     }
 
     #owns(socket) {

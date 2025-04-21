@@ -1,9 +1,7 @@
 .code-block-container {
-    padding: 24px;
+    padding: 52px;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .code-block-card {
