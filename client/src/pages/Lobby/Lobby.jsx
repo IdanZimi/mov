@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import { apiService } from "../../services/apiService.js";
 import { Typography } from 'antd';
 import { CodeOutlined } from '@ant-design/icons';
 import Error from '../../components/Error/Error.jsx';
