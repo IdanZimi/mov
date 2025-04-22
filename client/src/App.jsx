@@ -14,6 +14,5 @@ export default function App() {
                 </Routes>
             </CodeBlocksProvider>
         </BrowserRouter>
-
     );
 }

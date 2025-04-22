@@ -17,10 +17,10 @@ export default function CodeEditor({ code, onChange, readOnly }) {
     return (
         <div className='editor-wrapper'>
             <div className='editor-controls'>
-            <Tooltip title='Editor theme'>
-                <Switch onChange={handleThemeChange} size='small'></Switch>
-            </Tooltip>
-            <Text copyable={{text: code}}></Text>
+                <Tooltip title='Editor theme'>
+                    <Switch onChange={handleThemeChange} size='small'></Switch>
+                </Tooltip>
+                <Text copyable={{ text: code }}></Text>
             </div>
             <Editor
                 height="40vh"
@@ -29,11 +29,7 @@ export default function CodeEditor({ code, onChange, readOnly }) {
                 theme={theme}
                 loading={<Loading />}
                 onChange={onChange}
-                options={{
-                    readOnly,
-                    minimap: { enabled: true },
-                    fontSize: 15,
-                }}
+                options={{ readOnly, minimap: { enabled: true }, fontSize: 15, }}
             />
         </div>
     );
