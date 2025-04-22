@@ -6,7 +6,47 @@
 
 - Client deployed with [Vercel](https://vercel.com/)
 - Server deployed with [Render](https://render.com/)
+## Technical Architecture
 
+### Frontend (React + Vite)
+- Real-time updates using Socket.IO
+- State management with React hooks
+- Responsive design with Ant Design components
+- Monaco Editor for code editing
+
+### Backend (Node.js + Express)
+- Socket.IO for real-time communication
+- MongoDB for retrieving code exercises
+- RESTful API for data management
+- Role-based session management
+
+### Real-Time Features
+- Debounced code updates to prevent flooding
+- Automatic session cleanup
+- Role-based permissions
+- Student count tracking
+
+## How It Works
+
+1. **Session Initialization**
+    - First user to join becomes the mentor
+    - Subsequent users join as students
+    - Mentor's view is read-only to maintain code control
+
+2. **Real-Time Collaboration**
+    - Students can edit code in real-time
+    - Mentors can observe student progress
+    - All participants see changes instantly
+
+3. **Session Management**
+    - Automatic cleanup when mentor leaves
+    - Students receive notifications of session events
+    - Seamless handling of disconnections
+
+4. **Code Validation**
+    - Automatic checking against predefined solutions
+    - Instant feedback on correct implementations
+   
 # Local Setup Guide
 
 ## Prerequisites
