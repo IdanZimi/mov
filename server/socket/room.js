@@ -1,4 +1,4 @@
-import SOCKET_EVENTS from "./enum/events.js";
+import SOCKET_EVENTS from "./constants/events.js";
 
 const ROLES = Object.freeze({
     MENTOR: 'Mentor',

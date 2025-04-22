@@ -1,5 +1,5 @@
 import express from 'express';
-import {getCodeBlockById, getCodeBlocks} from '../controller/user.contoller.js';
+import {getCodeBlockById, getCodeBlocks} from '../controller/codeBlock.contoller.js';
 
 const codeBlockRouter = express.Router();
 

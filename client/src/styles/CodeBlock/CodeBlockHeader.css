@@ -1,0 +1,21 @@
+ .header-section {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 0.5rem;
+ }
+
+ .header-section .button-container {
+     display: flex;
+     gap: 8px;
+ }
+
+
+ .mentor-icon {
+     color: #faad14;
+ }
+
+ .student-icon {
+     color: #1890ff;
+ }
