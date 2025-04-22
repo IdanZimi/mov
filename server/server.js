@@ -17,11 +17,8 @@ async function startServer() {
         const io = new Server(server, {
             cors: { origin: environementConfig.CLIENT_ORIGIN }
         });
-
-        startRoomManager(io);
-
         
-
+        startRoomManager(io);
     } catch (error) {
         console.error('❌ Server failed to start:', error.message);
         process.exit(1);
